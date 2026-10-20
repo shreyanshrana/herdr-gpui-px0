@@ -2,7 +2,7 @@ id = "herdr-px0"
 name = "px0"
 version = "0.1.0"
 min_herdr_version = "0.9.1"
-description = "Open px0 beside the terminal in Herdr GPUI."
+description = "Herdr plugin to open px0 beside the terminal; requires Herdr GPUI with browser CLI support."
 platforms = ["macos"]
 
 [[actions]]
