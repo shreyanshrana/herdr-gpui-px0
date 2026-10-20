@@ -2,6 +2,8 @@
 
 [![CI](https://github.com/shreyanshrana/herdr-gpui-px0/actions/workflows/ci.yml/badge.svg)](https://github.com/shreyanshrana/herdr-gpui-px0/actions/workflows/ci.yml)
 
+<img width="1950" height="1267" alt="7A2BFAA8-3356-4E5B-BA24-6465B1BD8B25" src="https://github.com/user-attachments/assets/cc8c007e-c5f8-4e0b-9144-2f3afec9ea1e" />
+
 A Herdr plugin that requires the Herdr GPUI desktop app. It is installed and
 managed through Herdr's plugin system and uses GPUI's browser CLI; it is not a
 native GPUI/Rust extension and does not work with a daemon-only setup.
@@ -14,11 +16,11 @@ the current workspace, not terminals or VS Code.
 ## Requirements
 
 - **macOS**; other platforms and remote hosts are not supported yet.
-- **Herdr 0.9.1+** for plugin installation, actions, and terminal context.
-- **Herdr GPUI desktop app with browser CLI support**, running with an active
+- **[Herdr](https://herdr.dev/) 0.9.1+** for plugin installation, actions, and terminal context.
+- **[Herdr GPUI](https://herdrui.dev/) desktop app with browser CLI support**, running with an active
   workspace. Invoke plugin actions from that workspace, not a daemon-only setup.
 - **Python 3.8+**, available as `python3` on the plugin action's `PATH`.
-- **px0 0.1.19+**, installed separately and available as `px0` on `PATH`, at
+- **[px0](https://px0.ai) 0.1.19+**, installed separately and available as `px0` on `PATH`, at
   `~/.local/bin/px0`, or through the `PX0_BIN` environment variable.
 
 No build step or additional Python packages are required. This is a local-only
