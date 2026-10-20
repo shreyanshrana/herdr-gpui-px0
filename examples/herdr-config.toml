@@ -1,11 +1,11 @@
 [[keys.command]]
 key = 'cmd+\'
 type = "plugin_action"
-command = "herdr-px0.open"
+command = "herdr-gpui-px0.open"
 description = "Open px0 beside terminal"
 
 [[keys.command]]
 key = "cmd+alt+w"
 type = "plugin_action"
-command = "herdr-px0.close"
+command = "herdr-gpui-px0.close"
 description = "Close px0 in this workspace"

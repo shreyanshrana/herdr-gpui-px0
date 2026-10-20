@@ -11,7 +11,7 @@ if ! grep -Fqx "version = \"$version\"" herdr-plugin.toml; then
     exit 1
 fi
 
-name="herdr-px0_$version"
+name="herdr-gpui-px0_$version"
 mkdir -p dist
 git archive --format=tar.gz --prefix="$name/" HEAD \
     herdr-plugin.toml plugin.py README.md LICENSE CHANGELOG.md examples \

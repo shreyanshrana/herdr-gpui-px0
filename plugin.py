@@ -179,4 +179,4 @@ if __name__ == "__main__":
     try:
         main()
     except (RuntimeError, OSError, ValueError, KeyError, subprocess.SubprocessError) as error:
-        sys.exit(f"herdr-px0: {error}")
+        sys.exit(f"herdr-gpui-px0: {error}")

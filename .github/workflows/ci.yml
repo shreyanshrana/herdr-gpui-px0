@@ -41,10 +41,10 @@ jobs:
           import pathlib
           import tomllib
           manifest = tomllib.loads(pathlib.Path("herdr-plugin.toml").read_text())
-          assert manifest["id"] == "herdr-px0"
+          assert manifest["id"] == "herdr-gpui-px0"
           assert {a["id"] for a in manifest["actions"]} == {"open", "close"}
           example = tomllib.loads(pathlib.Path("examples/herdr-config.toml").read_text())
-          assert {a["command"] for a in example["keys"]["command"]} == {"herdr-px0.open", "herdr-px0.close"}
+          assert {a["command"] for a in example["keys"]["command"]} == {"herdr-gpui-px0.open", "herdr-gpui-px0.close"}
           PY
       - run: make package
       - run: shasum -a 256 -c SHA256SUMS

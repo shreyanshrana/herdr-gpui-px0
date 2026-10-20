@@ -1,6 +1,6 @@
 # px0 for Herdr GPUI
 
-[![CI](https://github.com/shreyanshrana/herdr-px0/actions/workflows/ci.yml/badge.svg)](https://github.com/shreyanshrana/herdr-px0/actions/workflows/ci.yml)
+[![CI](https://github.com/shreyanshrana/herdr-gpui-px0/actions/workflows/ci.yml/badge.svg)](https://github.com/shreyanshrana/herdr-gpui-px0/actions/workflows/ci.yml)
 
 A Herdr plugin that requires the Herdr GPUI desktop app. It is installed and
 managed through Herdr's plugin system and uses GPUI's browser CLI; it is not a
@@ -30,8 +30,8 @@ cannot be found automatically, set `HERDR_GPUI_BIN` to its executable path.
 Install [px0](https://px0.ai/) separately first, then install this integration:
 
 ```sh
-herdr plugin install shreyanshrana/herdr-px0
-herdr plugin action invoke herdr-px0.open
+herdr plugin install shreyanshrana/herdr-gpui-px0
+herdr plugin action invoke herdr-gpui-px0.open
 ```
 
 Invoke actions from a running Herdr GPUI workspace. No build step or binary
@@ -39,26 +39,32 @@ download is performed by this plugin. The plugin is independent of Herdr and
 px0; neither application is bundled.
 
 Already using a local link? Close its px0 tabs, run
-`herdr plugin unlink herdr-px0`, then install from GitHub. Your config and
-plugin state are preserved.
+`herdr plugin unlink herdr-gpui-px0`, then install from GitHub. Your config and
+plugin state are preserved when the plugin ID stays the same.
+
+Migrating from `herdr-px0`? Close its px0 tabs, remove the old plugin with
+`herdr plugin unlink herdr-px0` for a local link, then install the new repo.
+Replace `herdr-px0.open` and `herdr-px0.close` in your keybindings with
+`herdr-gpui-px0.open` and `herdr-gpui-px0.close`. The new plugin ID uses separate
+runtime state; old state is not migrated.
 
 ### Local development
 
 ```sh
 make check
-herdr plugin link /path/to/herdr-px0
-herdr plugin action invoke herdr-px0.open
+herdr plugin link /path/to/herdr-gpui-px0
+herdr plugin action invoke herdr-gpui-px0.open
 ```
 
 ### Release archive
 
-Download `herdr-px0_0.1.0.tar.gz` and `SHA256SUMS` from
-[GitHub Releases](https://github.com/shreyanshrana/herdr-px0/releases), then:
+Download `herdr-gpui-px0_0.1.0.tar.gz` and `SHA256SUMS` from
+[GitHub Releases](https://github.com/shreyanshrana/herdr-gpui-px0/releases), then:
 
 ```sh
 shasum -a 256 -c SHA256SUMS
-tar -xzf herdr-px0_0.1.0.tar.gz
-herdr plugin link "$PWD/herdr-px0_0.1.0"
+tar -xzf herdr-gpui-px0_0.1.0.tar.gz
+herdr plugin link "$PWD/herdr-gpui-px0_0.1.0"
 ```
 
 Keep the extracted directory in a permanent location. The archive contains
@@ -66,7 +72,7 @@ the Python plugin, manifest, documentation, and configuration example; you
 still need Python and px0 installed. To update a GitHub-managed install:
 
 ```sh
-herdr plugin update herdr-px0
+herdr plugin update herdr-gpui-px0
 ```
 
 Close existing px0 tabs before updating; reopen them to use the new version.
@@ -81,13 +87,13 @@ than adding duplicates, or choose different keys if they are in use:
 [[keys.command]]
 key = 'cmd+\'
 type = "plugin_action"
-command = "herdr-px0.open"
+command = "herdr-gpui-px0.open"
 description = "Open px0 beside terminal"
 
 [[keys.command]]
 key = "cmd+alt+w"
 type = "plugin_action"
-command = "herdr-px0.close"
+command = "herdr-gpui-px0.close"
 description = "Close px0 in this workspace"
 ```
 
@@ -113,10 +119,10 @@ use its review/edit actions only on trusted repositories.
 
 ```sh
 python3 -m unittest discover -s tests -v
-herdr plugin log list --plugin herdr-px0
+herdr plugin log list --plugin herdr-gpui-px0
 ```
 
-To unlink: close px0 tabs first, then run `herdr plugin unlink herdr-px0` and
+To unlink: close px0 tabs first, then run `herdr plugin unlink herdr-gpui-px0` and
 remove or restore the two keybindings. Linking does not install px0 or change
 keybindings automatically.
 
