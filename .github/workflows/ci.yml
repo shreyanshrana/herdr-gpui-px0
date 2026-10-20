@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            python: "3.8"
+          - os: ubuntu-latest
+            python: "3.13"
+          - os: macos-latest
+            python: "3.13"
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: make check
+
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Validate manifest and configuration example
+        run: |
+          python3 - <<'PY'
+          import pathlib
+          import tomllib
+          manifest = tomllib.loads(pathlib.Path("herdr-plugin.toml").read_text())
+          assert manifest["id"] == "herdr-px0"
+          assert {a["id"] for a in manifest["actions"]} == {"open", "close"}
+          example = tomllib.loads(pathlib.Path("examples/herdr-config.toml").read_text())
+          assert {a["command"] for a in example["keys"]["command"]} == {"herdr-px0.open", "herdr-px0.close"}
+          PY
+      - run: make package
+      - run: shasum -a 256 -c SHA256SUMS
+        working-directory: dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-archive
+          path: |
+            dist/*.tar.gz
+            dist/SHA256SUMS

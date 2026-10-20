@@ -1,0 +1,18 @@
+id = "herdr-px0"
+name = "px0"
+version = "0.1.0"
+min_herdr_version = "0.9.1"
+description = "Open px0 beside the terminal in Herdr GPUI."
+platforms = ["macos"]
+
+[[actions]]
+id = "open"
+title = "px0: open beside terminal"
+contexts = ["workspace"]
+command = ["python3", "plugin.py", "open"]
+
+[[actions]]
+id = "close"
+title = "px0: close in this workspace"
+contexts = ["workspace"]
+command = ["python3", "plugin.py", "close"]
